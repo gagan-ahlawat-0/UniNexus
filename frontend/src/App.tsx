@@ -5,7 +5,7 @@ function App() {
 
   useEffect(() => {
     // Connect to the Backend
-    fetch(`http://localhost:5000/api/test`)
+    fetch(`/api/health`)
       .then(response => response.json())
       .then(data => setMessage(data.message))
       .catch(error => console.error("Error connecting to server:", error));
@@ -16,7 +16,7 @@ function App() {
       <div className="p-10 bg-white shadow-xl rounded-xl text-center">
         <h1 className="text-4xl font-bold text-blue-600 mb-4">UniNexus</h1>
         <p className="text-xl text-gray-700">
-          Backend Status: 
+          Backend Status:
           <span className="font-semibold text-green-600 ml-2">
             {message ? message : "Connecting..."}
           </span>

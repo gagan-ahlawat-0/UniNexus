@@ -1,0 +1,58 @@
+.
+├── README.md
+├── backend
+│   ├── config
+│   ├── controllers
+│   ├── middlewares
+│   ├── models
+│   │   ├── ClubProfile.ts
+│   │   ├── Event.ts
+│   │   ├── RSVP.ts
+│   │   └── User.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── routes
+│   ├── server.ts
+│   ├── services
+│   ├── tsconfig.json
+│   └── utils
+├── frontend
+│   ├── dist
+│   │   ├── assets
+│   │   │   ├── index-C6G_3qQV.css
+│   │   │   └── index-t648TE1w.js
+│   │   ├── index.html
+│   │   └── vite.svg
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── api
+│   │   ├── assets
+│   │   │   ├── components
+│   │   │   │   ├── common
+│   │   │   │   ├── layout
+│   │   │   │   └── specific
+│   │   │   └── react.svg
+│   │   ├── components
+│   │   │   ├── common
+│   │   │   ├── layout
+│   │   │   └── specific
+│   │   ├── context
+│   │   ├── hooks
+│   │   ├── index.css
+│   │   ├── main.tsx
+│   │   ├── pages
+│   │   ├── types
+│   │   ├── utils
+│   │   └── vite-env.d.ts
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+└── project-structure.txt
+
+29 directories, 27 files

@@ -1,21 +1,11 @@
 import mongoose, { Schema, Document, mongo} from "mongoose";
 
 export interface IUser extends Document {
+    _id: mongoose.Types.ObjectId;
     username: string;
     email: string;
     password?: string;
-    role: 'student' |  'club' | 'admin';
-    clubDetails?: {
-        description: string;
-        logoUrl: string;
-        socilaLinks: {
-            instagram?: string,
-            linkedin?: string,
-            website?: string,
-            medium?: string
-        }
-    };
-    rsvps: mongoose.Types.ObjectId[];
+    role: 'student' | 'admin';
     createdAt: Date;
     updatedAt: Date;
 };
@@ -29,17 +19,6 @@ const UserSchema = new Schema<IUser>({
         enum: ['student', 'club', 'admin'],
         default: 'student'
     },
-    clubDetails: {
-        description: String,
-        logoUrl: String,
-        socialLinks: {
-            instagram: String,
-            linkedin: String,
-            website: String,
-            medium: String
-        }
-    },
-    rsvps: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 });

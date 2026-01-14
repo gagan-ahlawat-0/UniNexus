@@ -1,14 +1,14 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 interface IEvent extends Document {
+    _id: mongoose.Types.ObjectId;
     title: string;
     description: string;
-    emeddings: number[];
+    emeddings?: number[];
     posterUrl: string;
     location: string;
     category: 'Tech' | 'Cultural' | 'Sports' | 'Workshop' | 'Seminar' | 'Other';
     organizer: mongoose.Types.ObjectId;
-    attendees: mongoose.Types.ObjectId[];
     startTime: Date;
     endTime: Date;
     createdAt: Date;
@@ -24,10 +24,10 @@ const EventSchema = new Schema<IEvent>({
     category: {
         type: String,
         enum: ['Tech', 'Cultural', 'Sports', 'Workshop', 'Seminar', 'Other'],
-        required: true
+        required: true,
+        default: 'Other'
     },
-    organizer: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    attendees: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    organizer: { type: Schema.Types.ObjectId, ref: 'ClubProfile', required: true },
     startTime: { type: Date, required: true },
     endTime: { type: Date, required: true },
     createdAt: { type: Date, default: Date.now },
