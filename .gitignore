@@ -2,7 +2,8 @@ node_modules/
 .env
 .DS_Store
 dist/
+.vscode/
 
-frontend/node_modules
-backend/node_modules
+frontend/node_modules/
+backend/node_modules/
 project-structure.txt

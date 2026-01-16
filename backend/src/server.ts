@@ -3,14 +3,27 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import authRoutes from "./routes/authRoutes";
+import userRoutes from "./routes/userRoutes";
+
+import { IUser } from "./models/User";
+
 dotenv.config();
 
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/uninexus";
+const MONGO_URI = process.env.MONGO_URI;
+if(!MONGO_URI)
+{
+    console.error("❌ MongoDB URI not found in .env file");
+    process.exit(1);
+}
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 const connectDB = async () => {
   try {
@@ -23,16 +36,7 @@ const connectDB = async () => {
 };
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("API is running...");
-});
-
-app.get("/api/health", (req: Request, res: Response) => {
-  res.json({ message: "Backend is connected!" });
-});
-
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Internal Server Error" });
+  res.send("UniNexus API is running...");
 });
 
 const startServer = async () => {

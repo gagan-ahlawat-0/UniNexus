@@ -4,6 +4,7 @@ export interface IClubProfile extends Document {
     user: mongoose.Types.ObjectId;
     name: string;
     description: string;
+    email: string;
     logoUrl: string;
     socialLinks: {
         instagram?: string;
@@ -21,6 +22,7 @@ const ClubProfileSchema = new Schema<IClubProfile>({
     user: {type: Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
+    email: { type: String, required: true },
     logoUrl: { type: String, default: '' },
     socialLinks: {
         instagram: String,
