@@ -1,0 +1,10 @@
+import express from "express";
+import {registerClub , getAllClubs, getClubById, updateClub , deleteClub} from "../controllers/clubController";
+import { isClubOwner } from "../middlewares/clubMiddleware";
+const router = express.Router();
+router.route("/register").post(registerClub);
+router.route("/all").get(getAllClubs);
+router.route("/:_id").get(getClubById);
+router.route("/update").put(isClubOwner, updateClub);
+router.route("/delete/:_id").delete(isClubOwner, deleteClub);
+export default router;
