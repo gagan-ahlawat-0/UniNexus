@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { User, IUser } from '../models/User';
+import { logger } from '../utils/logger';
 
 interface DecodedToken extends JwtPayload {
     id: string;
@@ -42,7 +43,7 @@ export const protect = async (req: AuthenticatedRequest, res: Response, next: Ne
         } 
         catch (error) 
         {
-            console.error(error);
+            logger.error('Token verification error:', error);
             res.status(401).json({ message: 'Not authorized, token failed.' });
             return;
         }

@@ -1,6 +1,6 @@
-import { Request , Response , NextFunction } from "express";
-import { ClubProfile } from "../models/ClubProfile";
-import { IUser } from "../models/User";
+import { Request , Response , NextFunction } from 'express';
+import { ClubProfile } from '../models/ClubProfile';
+import { IUser } from '../models/User';
 
 interface AuthenticatedRequest extends Request {
     user?: IUser;
@@ -17,8 +17,8 @@ const isClubOwner = async ( req : AuthenticatedRequest , res : Response , next :
             return;
         }
         next();
-    }catch(error){
+    }catch{
         res.status(500).json({'Message' : 'Server error'}); 
     }
-}
+};
 export { isClubOwner };

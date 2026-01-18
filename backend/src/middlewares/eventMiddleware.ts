@@ -1,7 +1,8 @@
-import { Request,Response,NextFunction } from "express";
-import { IUser } from "../models/User";
-import { Event } from "../models/Event";
-import { ClubProfile } from "../models/ClubProfile";
+import { Request,Response,NextFunction } from 'express';
+import { IUser } from '../models/User';
+import { Event } from '../models/Event';
+import { ClubProfile } from '../models/ClubProfile';
+import { logger } from '../utils/logger';
 interface AuthenticatedRequest extends Request{
     user?: IUser;
 }
@@ -23,8 +24,8 @@ const isEventOrganiser = async (req : AuthenticatedRequest , res : Response , ne
         }
         next();
     }catch(error){
-        console.error(error);
+        logger.error('Event organizer check error:', error);
         res.status(500).json({'Message':'Server Error'});
     }
-}
+};
 export {isEventOrganiser};
