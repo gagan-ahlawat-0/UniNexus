@@ -43,7 +43,7 @@ export const protect = async (req: AuthenticatedRequest, res: Response, next: Ne
         } 
         catch (error) 
         {
-            logger.error('Token verification error:', error);
+            logger.error('Token verification error:', error instanceof Error ? error : String(error));
             res.status(401).json({ message: 'Not authorized, token failed.' });
             return;
         }

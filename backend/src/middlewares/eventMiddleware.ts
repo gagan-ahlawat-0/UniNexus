@@ -24,7 +24,7 @@ const isEventOrganiser = async (req : AuthenticatedRequest , res : Response , ne
         }
         next();
     }catch(error){
-        logger.error('Event organizer check error:', error);
+        logger.error('Event organizer check error:', error instanceof Error ? error : String(error));
         res.status(500).json({'Message':'Server Error'});
     }
 };

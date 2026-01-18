@@ -28,7 +28,7 @@ const registerClub = async (req: AuthenticatedRequest, res : Response): Promise<
         });
         res.status(201).json({'Message' : 'Club registered successfully', 'Club': newClub});
     }catch(error){
-        logger.error('Error registering club:', error);
+        logger.error('Error registering club:', error instanceof Error ? error : String(error));
         res.status(500).json({'Message' : 'Server error'});
     }
 };
@@ -38,7 +38,7 @@ const getAllClubs = async (req  : AuthenticatedRequest , res : Response) : Promi
         const clubs = await ClubProfile.find().populate('user', 'username email');
         res.json(clubs);
     }catch(error){
-        logger.error('Error getting all clubs:', error);
+        logger.error('Error getting all clubs:', error instanceof Error ? error : String(error));
         res.status(500).json({'Message' : 'Server error'});
     }
 };
@@ -53,7 +53,7 @@ const getClubById = async (req : AuthenticatedRequest , res : Response) : Promis
             res.json(club);
         }     
     }catch(error){
-        logger.error('Error getting club by ID:', error);
+        logger.error('Error getting club by ID:', error instanceof Error ? error : String(error));
         res.status(500).json({'Message' : 'Server error'});
     }
 };
@@ -79,7 +79,7 @@ const updateClub = async (req:AuthenticatedRequest , res : Response): Promise<vo
             res.json(updateClub);
         }
     }catch(error){
-        logger.error('Error updating club:', error);
+        logger.error('Error updating club:', error instanceof Error ? error : String(error));
         res.status(500).json({'Message' : 'Server error'});
     }
 };
@@ -97,7 +97,7 @@ const deleteClub = async ( req : AuthenticatedRequest , res : Response): Promise
             res.json({'Message' : 'Club deleted successfully'});
         }
     }catch(error){
-        logger.error('Error deleting club:', error);
+        logger.error('Error deleting club:', error instanceof Error ? error : String(error));
         res.status(500).json({'Message' : 'Server error'});
     }
 };

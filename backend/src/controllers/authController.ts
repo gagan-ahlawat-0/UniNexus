@@ -63,7 +63,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     }
     catch (error)
     {
-        logger.error('Registration error:', error);
+        logger.error('Registration error:', error instanceof Error ? error : String(error));
         res.status(500).json({ message: 'Internal Server Error.' });
     }
 };
@@ -98,7 +98,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     } 
     catch (error) 
     {
-        logger.error('Login error:', error);
+        logger.error('Login error:', error instanceof Error ? error : String(error));
         res.status(500).json({ message: 'Internal Server Error.' });
     }
 };
