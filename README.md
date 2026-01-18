@@ -1,62 +1,92 @@
-# UniNexus
+# UniNexus - Campus Event & Community Platform
 
-## 1. The Core Objective
-To build a functional web application where campus clubs can publish events and students can discover, search, and discuss them in deep, threaded conversations.
+## 1. Project Overview
 
-## 2. Target Users & Permissions
+**Objective**: To build a centralized platform that unifies fragmented campus information, including events, club activities, and student communities. The platform aims to replace scattered communication channels (WhatsApp, posters, Instagram) with a structured, searchable, and AI-enhanced feed.
+
+**Core Value Proposition**:
+- **Centralization**: All campus activities in one place.
+- **Discovery**: Semantic search to find relevant events easily.
+- **Community**: Reddit-style discussions to foster deeper engagement.
+
+## 2. Feature Implementation Matrix
+
+This matrix outlines the features required for the Minimum Viable Product (MVP) to prove the concept, versus "Optimal" features for future production releases.
+
+### Module A: Authentication & User Management
+
+| Feature | Type | Description | Tools & Tech Stack |
+|---------|------|-------------|-------------------|
+| **Student Login** | MVP | Secure Email/Password login with JWT session management. | Node.js, Express, JWT, bcrypt |
+| **Club Profiles** | MVP | Profiles for clubs to display logos, descriptions, and social links. | React, MongoDB, AWS S3 |
+| **Admin Dashboard** | MVP | Super-admin panel to approve/reject new club registrations. | React Admin / Custom Dashboard |
+| **User Flairs** | Optimal | Tags like "CS '26" or "Club President" displayed next to names. | MongoDB (User Schema), CSS |
+
+### Module B: Events Engine
+
+| Feature | Type | Description | Tools & Tech Stack |
+|---------|------|-------------|-------------------|
+| **Unified Event Feed** | MVP | Chronological feed of events with filtering (Date, Category). | MongoDB (Aggregations), React |
+| **Event CRUD** | MVP | Form for clubs to create, update, and delete events with images. | React Hook Form, AWS S3 |
+| **Semantic Search** | MVP | Search by meaning (e.g., "coding" finds "Hackathon"). | Pinecone / MongoDB Atlas, OpenAI |
+| **Basic RSVP** | MVP | "I'm interested" button adds the event to the user's list. | MongoDB (User-Event Relation) |
+| **Poster-to-Event** | Optimal | AI extracts Date/Time/Venue from uploaded poster images. | Tesseract.js (OCR) + LLM |
+| **Calendar Sync** | Optimal | "Add to Google Calendar" button for students. | Google Calendar API |
+
+### Module C: Community & Social ("The Reddit Layer")
+
+| Feature | Type | Description | Tools & Tech Stack |
+|---------|------|-------------|-------------------|
+| **Threaded Comments** | MVP | Nested comments (Parent -> Child) with infinite depth support. | MongoDB (Materialized Path) |
+| **Voting System** | MVP | Upvote/Downvote functionality for visibility. | MongoDB (Atomic operators) |
+| **Rich Text Editor** | Optimal | Markdown support, code blocks, and inline images in comments. | Markdown-to-JSX |
+| **Real-time Updates** | Optimal | New comments appear instantly without refreshing. | Socket.io |
+| **Anonymous Mode** | Optimal | "Confession" style posts with identity masking. | Node.js Middleware |
+
+### Module D: AI Integrations
+
+| Feature | Type | Description | Tools & Tech Stack |
+|---------|------|-------------|-------------------|
+| **Thread Summarizer** | MVP | Button to summarize long discussions into bullet points. | LangChain, OpenAI / Llama 3 |
+| **Smart Recommender** | Optimal | "Events you might like" based on past RSVPs. | Collaborative Filtering |
+| **Duplicate Detector** | Optimal | AI warns if a similar question/event already exists before posting. | Vector Similarity Search |
+
+## 3. Technical Implementation Details
+
+### A. Database Schema for Threaded Comments
+To handle nested discussions efficiently, the project will use the **Materialized Path Pattern** in MongoDB. This avoids recursive queries and ensures high read performance.
+
+- **Structure**: Each comment stores a path string (e.g., `GrandparentID.ParentID`).
+- **Benefit**: Allows fetching an entire discussion tree in a single database query by sorting by path.
+
+### B. Media Storage (AWS S3)
+All static assets (event posters, user avatars, club logos) will be offloaded to cloud storage.
+
+- **Service**: AWS S3 (Simple Storage Service).
+- **Library**: multer-s3 for Node.js.
+- **Workflow**: Files are streamed directly from the API to the S3 bucket; the database stores only the public URL.
+
+### C. Semantic Search Architecture
+Enables users to search by intent rather than exact keywords.
+
+- **Vector Database**: Pinecone or MongoDB Atlas Vector Search.
+- **Embedding Model**: OpenAI text-embedding-3-small or HuggingFace local models.
+- **Process**: Event descriptions are converted into vector embeddings upon creation. Search queries are converted to vectors to find the nearest mathematical neighbors.
+
+## 4. Proposed Tech Stack Summary
+
+- **Frontend**: React.js (Vite), Tailwind CSS, React Query
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (Primary Data), Redis (Caching - Optional for MVP)
+- **AI / ML**: LangChain (Orchestration), OpenAI API (Models), Pinecone (Vector DB)
+- **Storage**: AWS S3 (Images/Media)
+- **DevOps**: Docker (Containerization), GitHub Actions (CI/CD)
+
+## 5. Target Users & Permissions
+
 - **Student**: Can view events, search, RSVP, and comment.
 - **Club Admin**: Can create/edit their club profile and publish events.
 - **Super Admin**: Can approve new club registrations (security checkpoint).
-
-## 3. In-Scope Features (MVP Phase 1)
-
-### A. Authentication
-- **Sign up/Login**: Standard Email & Password login (using JWT).
-- **Role Separation**: Distinguishes between Student and Club accounts upon login.
-
-### B. The Event Feed (Home Page)
-- **Unified List**: Chronological scroll of all upcoming campus events.
-- **Filters**: Category (Tech, Cultural, Sports) and Date (Today, This Week).
-- **Semantic Search**: Search bar using basic Vector Search (e.g., "Coding" finds "Hackathon").
-
-### C. The "Reddit-Style" Discussion Layer
-- **Threaded Comments**: Nested hierarchy (Parent -> Child -> Grandchild).
-- **Indentation UI**: Visual depth showing reply structure.
-- **Upvotes**: Counter to surface good questions.
-
-### D. Club Management
-- **Create Event Form**: Title, Description, Date, Time, Venue, Image Upload.
-- **Club Profile**: Static page with Club Logo, Description, and Active Events.
-
-### E. AI Integration (MVP Level)
-- **TL;DR Button**: Generates a 3-sentence summary of long comment threads using an LLM.
-
-## 4. Out-of-Scope (Phase 2)
-- Real-time notifications (Socket.io).
-- Rich text editing in comments.
-- Poster OCR.
-- Calendar Integrations.
-- Gamification.
-
-## 5. MVP Technical Architecture
-
-### Frontend
-- **Framework**: React + Tailwind CSS (SPA).
-- **Tooling**: Vite, TypeScript.
-
-### Backend
-- **Runtime**: Node.js + Express (REST API).
-- **Language**: TypeScript.
-
-### Database
-- **MongoDB**: using Mongoose.
-    - **Collection 1**: Users (Students & Clubs).
-    - **Collection 2**: Events.
-    - **Collection 3**: Comments (Materialized Path pattern).
-
-### External Services
-- **Storage**: AWS S3 (Event Posters).
-- **AI Engine**: OpenAI API (Search Embeddings & Summarization).
 
 ## 6. Getting Started
 
@@ -85,14 +115,22 @@ npm install
 
 3. Create a `.env` file in the `backend` directory:
 ```env
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/uninexus
+PORT=3000
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/uninexus?retryWrites=true&w=majority
 JWT_SECRET=your_jwt_secret_key_here
+NODE_ENV=development
+
+# AWS S3 Configuration
 AWS_ACCESS_KEY_ID=your_aws_access_key
 AWS_SECRET_ACCESS_KEY=your_aws_secret_key
-AWS_REGION=your_aws_region
-AWS_S3_BUCKET=your_s3_bucket_name
+AWS_REGION=us-east-1
+AWS_BUCKET_NAME=uninexus-media
+
+# AI Services
 OPENAI_API_KEY=your_openai_api_key
+
+# Optional: Redis for caching
+REDIS_URL=redis://localhost:6379
 ```
 
 4. Start the development server:
@@ -100,7 +138,7 @@ OPENAI_API_KEY=your_openai_api_key
 npm run dev
 ```
 
-The backend will run on `http://localhost:5000`
+The backend will run on `http://localhost:3000`
 
 ### Frontend Setup
 
@@ -116,7 +154,7 @@ npm install
 
 3. Create a `.env` file in the `frontend` directory:
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=http://localhost:3000
 ```
 
 4. Start the development server:
@@ -222,7 +260,8 @@ Follow conventional commits format:
 
 ### Code Style
 
-- Use **TypeScript** for all new code
+- **Backend**: Use **TypeScript** for all backend code
+- **Frontend**: Use **JavaScript** for frontend flexibility (team preference)
 - Follow **ESLint** rules (run `npm run lint`)
 - Use **Prettier** for code formatting
 - Write descriptive variable and function names
@@ -230,13 +269,13 @@ Follow conventional commits format:
 
 ### Areas to Contribute
 
-- **Authentication System**: JWT implementation, password hashing
-- **Event Management**: CRUD operations, filtering, search
-- **Comment System**: Threaded comments with materialized path
-- **UI Components**: Reusable React components with Tailwind
-- **AI Integration**: OpenAI embeddings and summarization
-- **Testing**: Unit tests, integration tests
-- **Documentation**: API docs, component docs, tutorials
+- **Authentication System**: JWT implementation, password hashing, role management
+- **Event Management**: CRUD operations, filtering, search, RSVP system
+- **Comment System**: Threaded comments with materialized path pattern
+- **UI Components**: Reusable React components with Tailwind CSS
+- **AI Integration**: OpenAI embeddings, semantic search, thread summarization
+- **Testing**: Unit tests, integration tests, API testing
+- **Documentation**: API docs, component docs, setup tutorials
 
 ### Questions or Issues?
 
