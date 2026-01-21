@@ -144,8 +144,8 @@ UserSchema.virtual('fullName').get(function() {
     return `${this.firstName || ''} ${this.lastName || ''}`.trim();
 });
 
-UserSchema.methods.comparePassword = async function(password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
+UserSchema.methods.comparePassword = async function(candidatePassword: string): Promise<boolean> {
+    return bcrypt.compare(candidatePassword, this.password);
 };
 
 export const User = mongoose.model<IUser>('User', UserSchema);
