@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { connectDB } from './config/db';
+import { connectRedis, disconnectRedis, checkRedisHealth } from './config/redis';
 import { logger } from './utils/logger';
 
 import authRoutes from "./routes/authRoutes";
@@ -39,11 +40,14 @@ app.get("/", (req: Request, res: Response) => {
   res.send("UniNexus API is running...");
 });
 
-app.get("/api/health", (req: Request, res: Response) => {
+app.get("/api/health", async (req: Request, res: Response) => {
+  const redisHealthy = await checkRedisHealth();
+  
   res.json({ 
     message: "Connected! Backend is running.",
     timestamp: new Date().toISOString(),
-    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+    redis: redisHealthy ? 'connected' : 'disconnected'
   });
 });
 
@@ -51,6 +55,9 @@ const startServer = async (): Promise<void> => {
   try {
     // Connect to MongoDB first
     await connectDB();
+    
+    // Connect to Redis (non-blocking - app continues if Redis fails)
+    await connectRedis();
     
     // Then start server
     app.listen(PORT, () => {
@@ -62,5 +69,20 @@ const startServer = async (): Promise<void> => {
     process.exit(1);
   }
 };
+
+// Graceful shutdown
+process.on('SIGINT', async () => {
+  logger.info('⚠️ SIGINT received, shutting down gracefully...');
+  await disconnectRedis();
+  await mongoose.connection.close();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  logger.info('⚠️ SIGTERM received, shutting down gracefully...');
+  await disconnectRedis();
+  await mongoose.connection.close();
+  process.exit(0);
+});
 
 startServer();
