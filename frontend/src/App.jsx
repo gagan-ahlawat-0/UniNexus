@@ -1,18 +1,22 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { SidebarProvider } from './context/SidebarContext';
 import Layout from './components/layout/Layout';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import Events from './pages/Events';
+import Clubs from './pages/Clubs';
+import Profile from './pages/Profile';
 import './App.css';
 
 function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <Router>
+        <SidebarProvider>
           <Routes>
             {/* Modern Login Route - Full Screen */}
             <Route 
@@ -45,10 +49,7 @@ function App() {
                     path="/events" 
                     element={
                       <ProtectedRoute>
-                        <div className="text-center py-12">
-                          <h1 className="text-2xl font-bold">Events Page</h1>
-                          <p className="text-gray-600 mt-2">Coming soon...</p>
-                        </div>
+                        <Events />
                       </ProtectedRoute>
                     } 
                   />
@@ -56,10 +57,7 @@ function App() {
                     path="/clubs" 
                     element={
                       <ProtectedRoute>
-                        <div className="text-center py-12">
-                          <h1 className="text-2xl font-bold">Clubs Page</h1>
-                          <p className="text-gray-600 mt-2">Coming soon...</p>
-                        </div>
+                        <Clubs />
                       </ProtectedRoute>
                     } 
                   />
@@ -67,9 +65,84 @@ function App() {
                     path="/profile" 
                     element={
                       <ProtectedRoute>
-                        <div className="text-center py-12">
-                          <h1 className="text-2xl font-bold">Profile Page</h1>
-                          <p className="text-gray-600 mt-2">Coming soon...</p>
+                        <Profile />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/my-rsvps" 
+                    element={
+                      <ProtectedRoute>
+                        <div className="p-4 sm:p-6 lg:p-8">
+                          <div className="text-center py-12">
+                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">My RSVPs Page</h1>
+                            <p className="text-gray-600 dark:text-gray-400 mt-2">Coming soon...</p>
+                          </div>
+                        </div>
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/discover" 
+                    element={
+                      <ProtectedRoute>
+                        <div className="p-4 sm:p-6 lg:p-8">
+                          <div className="text-center py-12">
+                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Discover Page</h1>
+                            <p className="text-gray-600 dark:text-gray-400 mt-2">Coming soon...</p>
+                          </div>
+                        </div>
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/trending" 
+                    element={
+                      <ProtectedRoute>
+                        <div className="p-4 sm:p-6 lg:p-8">
+                          <div className="text-center py-12">
+                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Trending Page</h1>
+                            <p className="text-gray-600 dark:text-gray-400 mt-2">Coming soon...</p>
+                          </div>
+                        </div>
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/notifications" 
+                    element={
+                      <ProtectedRoute>
+                        <div className="p-4 sm:p-6 lg:p-8">
+                          <div className="text-center py-12">
+                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Notifications Page</h1>
+                            <p className="text-gray-600 dark:text-gray-400 mt-2">Coming soon...</p>
+                          </div>
+                        </div>
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/messages" 
+                    element={
+                      <ProtectedRoute>
+                        <div className="p-4 sm:p-6 lg:p-8">
+                          <div className="text-center py-12">
+                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Messages Page</h1>
+                            <p className="text-gray-600 dark:text-gray-400 mt-2">Coming soon...</p>
+                          </div>
+                        </div>
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/settings" 
+                    element={
+                      <ProtectedRoute>
+                        <div className="p-4 sm:p-6 lg:p-8">
+                          <div className="text-center py-12">
+                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Settings Page</h1>
+                            <p className="text-gray-600 dark:text-gray-400 mt-2">Coming soon...</p>
+                          </div>
                         </div>
                       </ProtectedRoute>
                     } 
@@ -78,20 +151,11 @@ function App() {
                     path="/my-club" 
                     element={
                       <ProtectedRoute>
-                        <div className="text-center py-12">
-                          <h1 className="text-2xl font-bold">My Club Page</h1>
-                          <p className="text-gray-600 mt-2">Coming soon...</p>
-                        </div>
-                      </ProtectedRoute>
-                    } 
-                  />
-                  <Route 
-                    path="/my-rsvps" 
-                    element={
-                      <ProtectedRoute>
-                        <div className="text-center py-12">
-                          <h1 className="text-2xl font-bold">My RSVPs Page</h1>
-                          <p className="text-gray-600 mt-2">Coming soon...</p>
+                        <div className="p-4 sm:p-6 lg:p-8">
+                          <div className="text-center py-12">
+                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">My Club Page</h1>
+                            <p className="text-gray-600 dark:text-gray-400 mt-2">Coming soon...</p>
+                          </div>
                         </div>
                       </ProtectedRoute>
                     } 
@@ -101,12 +165,14 @@ function App() {
                   <Route 
                     path="*" 
                     element={
-                      <div className="text-center py-12">
-                        <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
-                        <p className="text-gray-600 mb-8">Page not found</p>
-                        <a href="/" className="text-blue-600 hover:text-blue-700 font-medium">
-                          Go back home
-                        </a>
+                      <div className="p-4 sm:p-6 lg:p-8">
+                        <div className="text-center py-12">
+                          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">404</h1>
+                          <p className="text-gray-600 dark:text-gray-400 mb-8">Page not found</p>
+                          <a href="/" className="text-blue-600 hover:text-blue-700 font-medium">
+                            Go back home
+                          </a>
+                        </div>
                       </div>
                     } 
                   />
@@ -114,7 +180,7 @@ function App() {
               </Layout>
             } />
           </Routes>
-        </Router>
+        </SidebarProvider>
       </AuthProvider>
     </ThemeProvider>
   );

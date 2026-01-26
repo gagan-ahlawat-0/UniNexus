@@ -14,8 +14,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white dark:bg-card-dark shadow-lg border-b border-slate-200 dark:border-input-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="sticky top-0 z-50 bg-white dark:bg-card-dark shadow-lg border-b border-slate-200 dark:border-input-border w-full">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">

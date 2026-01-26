@@ -91,10 +91,14 @@ src/
 - ✅ Home page with stats and featured content
 - ✅ Login page with form validation
 - ✅ Register page with comprehensive validation
+- ✅ Events page with filtering and backend integration
+- ✅ Clubs page with search and backend integration
+- ✅ Profile page with edit functionality
 - ✅ 404 error page
-- 🚧 Events page (placeholder)
-- 🚧 Clubs page (placeholder)
-- 🚧 Profile page (placeholder)
+- 🚧 Event detail page (coming soon)
+- 🚧 Club detail page (coming soon)
+- 🚧 My Club dashboard (coming soon)
+- 🚧 My RSVPs page (coming soon)
 
 ## API Integration
 

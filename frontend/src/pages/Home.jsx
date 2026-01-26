@@ -73,10 +73,10 @@ const Home = () => {
   }
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 p-4 sm:p-6 lg:p-8">
       {/* Hero Section */}
       <section className="text-center py-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl text-white">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="px-6">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Welcome to UniNexus
           </h1>
