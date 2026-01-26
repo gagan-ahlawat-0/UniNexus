@@ -87,8 +87,8 @@ const Register = () => {
         {/* Left Side - Illustration */}
         <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-indigo-50/50 dark:bg-background-dark items-center justify-center p-12">
           {/* Background Effects */}
-          <div className="absolute top-[-5%] left-[-5%] w-96 h-96 bg-primary/10 dark:bg-primary/20 rounded-full blur-[100px] dark:blur-[120px]"></div>
-          <div className="absolute bottom-[-5%] right-[-5%] w-[500px] h-[500px] bg-blue-400/10 dark:bg-indigo-600/10 rounded-full blur-[120px] dark:blur-[150px]"></div>
+          <div className="absolute top-[-5%] left-[-5%] w-96 h-96 bg-primary/10 dark:bg-primary/20 rounded-full blur-[100px]"></div>
+          <div className="absolute bottom-[-5%] right-[-5%] w-[500px] h-[500px] bg-blue-400/10 dark:bg-indigo-600/10 rounded-full blur-[120px]"></div>
 
           <div className="relative z-10 w-full max-w-xl">
             {/* Logo */}
@@ -100,9 +100,9 @@ const Register = () => {
             </div>
 
             {/* Illustration Card */}
-            <div className={`rounded-[2.5rem] dark:rounded-3xl overflow-hidden bg-white dark:border-white/10 p-4 dark:p-0 shadow-2xl dark:shadow-2xl border border-white dark:border-white/10 ${!isDark ? 'illustration-shadow' : ''}`}>
+            <div className="rounded-[2.5rem] overflow-hidden bg-white dark:bg-transparent p-4 shadow-2xl border border-white dark:border-white/10 illustration-shadow">
               <div
-                className="aspect-[4/5] w-full bg-center bg-cover rounded-[1.75rem] dark:rounded-none relative"
+                className="aspect-[4/5] w-full bg-center bg-cover rounded-[1.75rem] relative"
                 style={{
                   backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPEZOr3V79yQ1nqxk8YyMDL92rNWMuEsRv8UklHRygH3e37e3TKgY0swuqzvOGfaCIFFSXDK42NRFmBj2hXI4ut7sm-SDRDaMikHah7SgyYKAoqIc5I2RsGBWOrXvfakCMP9ayhVBDmhW5Ntsuwkj0FVJOuMcLZYBncGO_IL0pruqE6os1Vd9dU0CIOHl6wM42OEr8WnoxFIK-SkybRkdmWR5M6H8OZDW4-mn9yvg9gm_VoKmNAj1e_Bsr1jFktpe86Zh_1Sn9yZM')"
                 }}
@@ -125,8 +125,8 @@ const Register = () => {
           <div className="w-full max-w-[440px]">
             {/* Header */}
             <div className="flex flex-col items-center lg:items-start mb-10">
-              <div className="bg-primary p-4 dark:p-3 rounded-2xl shadow-xl shadow-primary/20 mb-8 dark:mb-6 inline-flex">
-                <span className="material-symbols-outlined text-white text-[48px] dark:text-[40px] block">hub</span>
+              <div className="bg-primary p-4 rounded-2xl shadow-xl shadow-primary/20 dark:shadow-primary/30 mb-8 inline-flex">
+                <span className="material-symbols-outlined text-white text-[48px] block">hub</span>
               </div>
               <div className="text-center lg:text-left">
                 <h1 className="text-4xl font-bold tracking-tight mb-3 text-slate-900 dark:text-white">
@@ -205,7 +205,7 @@ const Register = () => {
                       type="text"
                       value={formData.firstName}
                       onChange={handleChange}
-                      className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 dark:focus:ring-2 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
+                      className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
                       placeholder="John"
                     />
                   </div>
@@ -217,7 +217,7 @@ const Register = () => {
                     type="text"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="block w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 dark:focus:ring-2 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
+                    className="block w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
                     placeholder="Doe"
                   />
                 </div>
@@ -236,7 +236,7 @@ const Register = () => {
                     required
                     value={formData.username}
                     onChange={handleChange}
-                    className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 dark:focus:ring-2 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
+                    className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
                     placeholder="johndoe"
                   />
                 </div>
@@ -255,7 +255,7 @@ const Register = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 dark:focus:ring-2 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
+                    className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
                     placeholder="name@university.edu"
                   />
                 </div>
@@ -270,7 +270,7 @@ const Register = () => {
                       name="year"
                       value={formData.year}
                       onChange={handleChange}
-                      className="block w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white focus:ring-4 dark:focus:ring-2 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none appearance-none"
+                      className="block w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white focus:ring-4 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none appearance-none"
                     >
                       <option value="">Select Year</option>
                       <option value="1">1st Year</option>
@@ -287,7 +287,7 @@ const Register = () => {
                       type="text"
                       value={formData.major}
                       onChange={handleChange}
-                      className="block w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 dark:focus:ring-2 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
+                      className="block w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
                       placeholder="Computer Science"
                     />
                   </div>
@@ -307,7 +307,7 @@ const Register = () => {
                     required
                     value={formData.password}
                     onChange={handleChange}
-                    className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 dark:focus:ring-2 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
+                    className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
                     placeholder="••••••••"
                   />
                   <button
@@ -332,7 +332,7 @@ const Register = () => {
                     required
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 dark:focus:ring-2 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
+                    className="block w-full pl-11 pr-4 py-4 rounded-xl border border-slate-200 dark:border-input-border bg-slate-50/50 dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-4 focus:ring-primary/10 dark:focus:ring-primary/20 focus:border-primary focus:bg-white dark:focus:bg-card-dark transition-all outline-none"
                     placeholder="••••••••"
                   />
                   <button
@@ -346,7 +346,7 @@ const Register = () => {
               </div>
 
               {/* Terms Checkbox */}
-              <div className="flex items-center justify-between py-1 dark:py-2">
+              <div className="flex items-center justify-between py-1">
                 <label className="flex items-center gap-2 cursor-pointer group">
                   <div className="relative flex items-center justify-center">
                     <input
@@ -372,22 +372,22 @@ const Register = () => {
               </div>
 
               {/* Submit Button */}
-              <div className="space-y-4 pt-2 dark:pt-4">
+              <div className="space-y-4 pt-2">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-primary hover:bg-primary-dark dark:hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/20 dark:shadow-primary/25 active:scale-[0.99] dark:active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-primary hover:bg-primary-dark dark:hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/20 dark:shadow-primary/25 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Creating Account..." : "Create UniNexus Account"}
                 </button>
 
                 {/* Divider */}
-                <div className="relative py-4 dark:py-2">
+                <div className="relative py-4">
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-slate-100 dark:border-white/10"></div>
                   </div>
                   <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-white dark:bg-background-dark px-4 text-slate-400 dark:text-slate-500 tracking-widest font-medium dark:font-normal">
+                    <span className="bg-white dark:bg-background-dark px-4 text-slate-400 dark:text-slate-500 tracking-widest font-medium">
                       Or continue with
                     </span>
                   </div>
@@ -396,7 +396,7 @@ const Register = () => {
                 {/* Google Sign Up */}
                 <button
                   type="button"
-                  className="w-full flex items-center justify-center gap-3 bg-white dark:bg-card-dark border border-slate-200 dark:border-input-border hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:border-slate-300 dark:hover:border-input-border py-4 rounded-xl transition-all font-semibold dark:font-medium text-slate-700 dark:text-white"
+                  className="w-full flex items-center justify-center gap-3 bg-white dark:bg-card-dark border border-slate-200 dark:border-input-border hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:border-slate-300 dark:hover:border-input-border py-4 rounded-xl transition-all font-semibold text-slate-700 dark:text-white"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24">
                     <path
@@ -437,7 +437,7 @@ const Register = () => {
             </div>
 
             {/* Footer Links */}
-            <div className="mt-16 flex items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 uppercase tracking-widest font-medium dark:font-normal">
+            <div className="mt-16 flex items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 uppercase tracking-widest font-medium">
               <Link to="/status" className="hover:text-primary transition-colors">
                 System Status
               </Link>
