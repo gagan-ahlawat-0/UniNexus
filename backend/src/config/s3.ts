@@ -23,7 +23,7 @@ export const initializeS3 = (): S3Client | null => {
     }
 
     logger.info('🔄 Initializing AWS S3 client...');
-    logger.info(`S3 configuration: Region=${awsRegion}, Bucket=${bucketName}`);
+    logger.info(`AWS Region: ${awsRegion}`);
 
     s3Client = new S3Client({
       region: awsRegion,
@@ -37,7 +37,7 @@ export const initializeS3 = (): S3Client | null => {
     return s3Client;
   } catch (error) {
     logger.error('❌ Failed to initialize AWS S3 client:', error instanceof Error ? error.message : String(error));
-    logger.warn('⚠️ Application will continue without S3 media storage');
+    logger.warn('⚠️ Application will continue without media upload functionality');
     s3Client = null;
     return null;
   }
@@ -49,26 +49,4 @@ export const getS3Client = (): S3Client | null => {
 
 export const getS3BucketName = (): string | undefined => {
   return process.env.S3_BUCKET_NAME;
-};
-
-export const checkS3Connection = async (): Promise<boolean> => {
-  if (!s3Client) {
-    return false;
-  }
-
-  try {
-    const { HeadBucketCommand } = await import('@aws-sdk/client-s3');
-    const bucketName = getS3BucketName();
-    
-    if (!bucketName) {
-      return false;
-    }
-
-    await s3Client.send(new HeadBucketCommand({ Bucket: bucketName }));
-    logger.info('✅ S3 bucket access verified');
-    return true;
-  } catch (error) {
-    logger.error('❌ S3 connection check failed:', error instanceof Error ? error.message : String(error));
-    return false;
-  }
 };
