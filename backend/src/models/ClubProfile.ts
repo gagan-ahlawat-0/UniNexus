@@ -10,6 +10,11 @@ export interface IClubProfile extends Document {
         s3Key: string;
         uploadedAt: Date;
     };
+    stats?: {
+        memberCount: number;
+        eventCount: number;
+        engagementScore: number;
+    };
     socialLinks: {
         instagram?: string;
         linkedin?: string;
@@ -89,6 +94,23 @@ const ClubProfileSchema = new Schema<IClubProfile>({
         },
         uploadedAt: {
             type: Date
+        }
+    },
+    stats: {
+        memberCount: {
+            type: Number,
+            default: 0,
+            min: [0, 'Member count cannot be negative']
+        },
+        eventCount: {
+            type: Number,
+            default: 0,
+            min: [0, 'Event count cannot be negative']
+        },
+        engagementScore: {
+            type: Number,
+            default: 0,
+            min: [0, 'Engagement score cannot be negative']
         }
     },
     socialLinks: {

@@ -17,6 +17,17 @@ export interface IUser extends Document {
         s3Key: string;
         uploadedAt: Date;
     };
+    settings?: {
+        notifications: {
+            events: boolean;
+            clubs: boolean;
+            messages: boolean;
+        };
+        privacy: {
+            showProfile: boolean;
+            showEvents: boolean;
+        };
+    };
     refreshToken?: string;
     createdAt: Date;
     updatedAt: Date;
@@ -119,6 +130,32 @@ const UserSchema = new Schema<IUser>({
         },
         uploadedAt: {
             type: Date
+        }
+    },
+    settings: {
+        notifications: {
+            events: {
+                type: Boolean,
+                default: true
+            },
+            clubs: {
+                type: Boolean,
+                default: true
+            },
+            messages: {
+                type: Boolean,
+                default: true
+            }
+        },
+        privacy: {
+            showProfile: {
+                type: Boolean,
+                default: true
+            },
+            showEvents: {
+                type: Boolean,
+                default: true
+            }
         }
     },
     refreshToken: {
